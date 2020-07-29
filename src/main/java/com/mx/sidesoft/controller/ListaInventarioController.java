@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mx.model.Equipo;
 
@@ -19,9 +20,10 @@ public class ListaInventarioController {
 	}
 	
 	@GetMapping("registrarEquipo")
-	public String guardarEquipo(@RequestParam String nombre, @RequestParam String modelo,@RequestParam String marca
-			,@RequestParam String serie, @RequestParam String ubicacion ) {		
+	public @ResponseBody String guardarEquipo(@RequestParam String nombre, @RequestParam String modelo,@RequestParam String marca
+			,@RequestParam String serie, @RequestParam String ubicacion ) {
 		Equipo nuevoEquipo= new Equipo(nombre, modelo, marca, serie, ubicacion);
+	
 		System.out.println(nuevoEquipo.toString());
 		return "REGISTRADO CORRECTAMENTE";
 	}

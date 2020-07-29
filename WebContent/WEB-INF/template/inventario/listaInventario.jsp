@@ -24,23 +24,23 @@
 					<form>
 						<div class="form-group col-md-6 ">
 							<input id="nombre" type="text" class="form-control"
-								placeholder="Nombre Equipo" value="Nombre Equipo" required>
+								placeholder="Nombre Equipo"  required>
 						</div>
 						<div class="form-group col-md-6">
 							<input id="modelo" type="text" class="form-control"
-								placeholder="" value="Modelo" required>
+								placeholder="Modelo"  required>
 						</div>
 						<div class="form-group col-md-6">
 							<input id="marca" type="text" class="form-control"
-								placeholder="Marca" value="Marca" required>
+								placeholder="Marca" required>
 						</div>
 						<div class="form-group col-md-6">
 							<input id="serie" type="text" class="form-control"
-								placeholder="Serie" value="Serie" required>
+								placeholder="Serie"  required>
 						</div>
 						<div class="form-group col-md-6">
 							<input id="ubicacion" type="text" class="form-control"
-								placeholder="Ubicacion" value="Ubicacion" required>
+								placeholder="Ubicacion"  required>
 						</div>
 						<div class="form-group col-md-6">
 							<button type="button" id="btn-submit" class="btn btn-primary"
@@ -58,23 +58,23 @@
 		var serie;
 		var ubicacion;
 		
-		function registroEquipo() {
-			
+		function registroEquipo() {	
 			$.ajax({
-				url : "registrarEquipo.html",
-				data : {
-					nombre : document.getElementById("nombre").value,
+                url: "registrarEquipo.html",
+                data: {
+                	nombre : document.getElementById("nombre").value,
 					modelo : document.getElementById("modelo").value,
 					marca  : document.getElementById("marca").value,
 				    serie  : document.getElementById("serie").value,
 					ubicacion: document.getElementById("ubicacion").value
-				},
-				success : function(data) {
-					
-					//alertify.success(data);
-					//TablaUsuario();
-				}
-			});
+                },
+                success: function (data) {
+                	console.log(data);
+                    //alertify.success(data);
+                    //TablaUsuario();
+                }
+            });	
+			
 		}
 	</script>
 </body>
