@@ -30,7 +30,7 @@
 		calendar = new CalendarYvv("#calendar", moment().format("Y-M-D"), "Monday");
 		calendar.funcPer = function(ev){	
 			console.log(ev);
-			obtenerFechaSeleccionado(ev.diaSeleccionado)		
+			obtenerFechaSeleccionado(ev.currentSelected)		
 		};
 		calendar.diasResal = [4,15,26]
 		calendar.createCalendar();
