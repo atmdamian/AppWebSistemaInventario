@@ -70,7 +70,39 @@
 	var contrasenia;
 	
 	function registroAcceso(){
-	$.ajax({
+		var datos = {
+				"tipo": document.getElementById("tipo").value,
+				"hostname": document.getElementById("hostname").value,
+				"ip": document.getElementById("ip").value,
+				"gateway": document.getElementById("gateway").value,
+				"mascara": document.getElementById("mascara").value,
+				"usuario": document.getElementById("usuario").value,
+				"contrasenia": document.getElementById("contrasenia").value,
+				"servicio": document.getElementById("servicio").value		
+			   }
+			   $.ajax({
+			      type: "POST",
+			      //contentType : 'application/json; charset=utf-8',
+			      dataType : 'json',
+			      url: "registrarAcceso.html",
+			      data: {
+						tipo: document.getElementById("tipo").value,
+						hostname: document.getElementById("hostname").value,
+						ip: document.getElementById("ip").value,
+						gateway: document.getElementById("gateway").value,
+						mascara: document.getElementById("mascara").value,
+						usuario: document.getElementById("usuario").value,
+						contrasenia: document.getElementById("contrasenia").value,
+						servicio: document.getElementById("servicio").value						
+					}, // Note it is important
+			      success :function(response) {
+			       console.log(response);
+			     },
+			        error: function(){      
+			            console.log('Error al insertar');
+			           }
+			  });
+	/*$.ajax({
 			url: "registrarAcceso.html",
 			data:{
 					tipo: document.getElementById("tipo").value,
@@ -85,7 +117,7 @@
 				success: function(data){
 					console.log(data);
 					}
-		});
+		});*/
 	}
 	
 </script>

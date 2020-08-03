@@ -3,6 +3,7 @@ package com.mx.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +20,7 @@ public class AccesoController {
 	public String templateAccesos() {
 		return "acceso/listaAcceso";
 	}
-	@GetMapping("registrarAcceso")
+	@PostMapping("registrarAcceso")
 	public @ResponseBody  String registrarEquipo(@RequestParam String tipo,
 			@RequestParam String contrasenia, @RequestParam String usuario, @RequestParam String hostname, @RequestParam String ip,
 			@RequestParam String mascara, @RequestParam String gateway,@RequestParam String servicio) {
