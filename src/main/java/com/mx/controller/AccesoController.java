@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.mx.model.Credencial;
 import com.mx.service.AccesoService;
 
@@ -29,6 +30,14 @@ public class AccesoController {
 		accesoService.save(credencial);		
 		return "REGISTRADO CORRECTAMENTE";
 	}
+	
+	@GetMapping("getAccesos")
+    public @ResponseBody
+    String PintaTablaAccesos() {
+        Gson gson = new Gson();
+        String camposJson = gson.toJson(accesoService.findAll());
+        return camposJson;
+    }
 
 
 }

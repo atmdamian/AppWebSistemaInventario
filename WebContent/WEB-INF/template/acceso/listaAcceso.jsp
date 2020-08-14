@@ -49,18 +49,42 @@
 						</div>
 						<div class="form-group col-md-6 ">
 							<input id="servicio" type="text" class="form-control"
-								placeholder="Servicios" required>
+								placeholder="Servicio" required>
 						</div>
 						<div class="form-group col-md-6">
 							<button type="button" id="btn-submit" class="btn btn-primary"
-								onclick="registroAcceso()">Enviar</button>
+								onclick="registroAcceso();TablaAccesos();
+									">Enviar</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="container">
+	<table id="tableAccesos" class="table table-bordered table-striped">
+                            <thead clas="thead-light">
+                                <tr>
+                                    <th scope="coll">Tipo</th>
+                                    <th scope="col">HostName</th>
+                                    <th scope="col">DireccionIP</th>
+                                    <th scope="col">Geteway</th>
+                                    <th scope="col">MascaraRed</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Contraseña</th>
+                                    <th scope="col">Servicio</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+	</div>
 	<script type="text/javascript">
+	 $(document).ready(function () {
+         TablaAccesos();
+     });
 	var tipo;
 	var hostname;
 	var ip;
@@ -83,7 +107,7 @@
 			   $.ajax({
 			      type: "POST",
 			      //contentType : 'application/json; charset=utf-8',
-			      dataType : 'json',
+			      //dataType : 'json',
 			      url: "registrarAcceso.html",
 			      data: {
 						tipo: document.getElementById("tipo").value,
@@ -95,8 +119,9 @@
 						contrasenia: document.getElementById("contrasenia").value,
 						servicio: document.getElementById("servicio").value						
 					}, // Note it is important
-			      success :function(response) {
+			      success: function(response) {
 			       console.log(response);
+			       TablaAccesos();
 			     },
 			        error: function(){      
 			            console.log('Error al insertar');
@@ -119,6 +144,42 @@
 					}
 		});*/
 	}
+
+
+
+    function TablaAccesos() {
+        $.ajax({
+            url: "getAccesos.html",
+            data: {
+            },
+            success: function (data) {
+                var dataJSON = data;
+                dataJSON = JSON.parse(dataJSON);
+                var tablaAcceso = '';
+                if (jQuery.isEmptyObject(dataJSON))
+                {
+                    $("#tableAccesos tbody").html('');
+                } else {
+                	for (var i = 0; i < dataJSON.length; i++) {
+                		tablaAcceso +=
+                                '<tr>' +
+                                '<td>' + dataJSON[i].tipo + '</td>' +
+                                '<td>' + dataJSON[i].hostname + '</td>' +
+                                '<td>' + dataJSON[i].direccion_ip + '</td>' +
+                                '<td>' + dataJSON[i].gateway + '</td>' +
+                                '<td>' + dataJSON[i].mascara_red + '</td>' +
+                                '<td>' + dataJSON[i].usuario + '</td>' +
+                                '<td>' + dataJSON[i].contrasenia + '</td>' +
+                                '<td>' + dataJSON[i]. servicios + '</td>' +                 
+                                '<td>' + '<a class="btn btn-primary" onclick="modificarUsuario(this)" data-value="' + 1 + '"> Modificar </a>' + '</td>' +
+                                '<td>' + '<a href="#" title="Eliminar"> Eliminar </a>' + '</td>' +
+                                '</tr>';
+                        $("#tableAccesos tbody").html(tablaAcceso);
+                    }
+                }
+            }
+        });
+    }
 	
 </script>
 </body>

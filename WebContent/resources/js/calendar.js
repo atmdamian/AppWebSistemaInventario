@@ -25,7 +25,6 @@ class CalendarYvv{
 		this.textColor = "text-white"; // color de texto en la cabecera
 		this.btnH = "btn-outline-light"; // color de boton normal
 		this.btnD = "btn-rounded-success";// color de boton al pasar el mouse - "btn-outline-dark";
-
 	}
 	startElements(){
 		this.diaSeleccionado = this.corregirMesA(this.diaSeleccionado);
@@ -109,12 +108,11 @@ class CalendarYvv{
 			}
 			//dias resaltados o importantes
 			if(this.diasResal.indexOf(i+1)!=-1){
-				div = $("<div class='d-flex border flex-fill w-100 justify-content-center pt-3 pb-3 btn "+this.btnD+"' data-date='"+fechNow+"' style='background: "+this.colorResal+"; color: "+this.textResalt+"; font-weight: bold;'>").html(i+1);
+				div = $("<div class='d-flex border flex-fill w-100 justify-content-center pt-3 pb-3 btn "+this.btnD+"' data-date='"+fechNow+"' id='"+fechNow+"' style='background: "+this.colorResal+"; color: "+this.textResalt+"; font-weight: bold;'>").html(i+1);
 			}
 
-			div.on("click", function(e){				
+			div.on("click", function(e){			
 				var daySelec = $(e.target).attr("data-date");
-				console.log(daySelec, "123aw");
 				clas_e.currentSelected = daySelec;
 				clas_e.funcPer(clas_e)
 			});

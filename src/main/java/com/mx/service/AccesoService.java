@@ -1,5 +1,7 @@
 package com.mx.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,7 @@ public class AccesoService {
 		System.out.println(credencial.toString());
 		return accesoDao.save(credencial);
 	}
-
+	public List<Credencial> findAll(){	
+		return accesoDao.findAll();
+	}
 }
