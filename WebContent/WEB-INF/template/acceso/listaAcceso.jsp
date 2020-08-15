@@ -20,35 +20,35 @@
 				<div class="card-body">
 					<form>
 						<div class="form-group col-md-6 ">
-							<input id="tipo" type="text" class="form-control"
+							<input id="tipo" type="text" class="input form-control"
 								placeholder="Tipo" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="hostname" type="text" class="form-control"
+							<input id="hostname" type="text" class="input form-control"
 								placeholder="HostName" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="ip" type="text" class="form-control"
+							<input id="ip" type="text" class="input form-control"
 								placeholder="Direccion Ip" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="gateway" type="text" class="form-control"
+							<input id="gateway" type="text" class="input form-control"
 								placeholder="Gateway" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="mascara" type="text" class="form-control"
+							<input id="mascara" type="text" class="input form-control"
 								placeholder="Mascara Red" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="usuario" type="text" class="form-control"
+							<input id="usuario" type="text" class="input form-control"
 								placeholder="Usuario" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="contrasenia" type="text" class="form-control"
+							<input id="contrasenia" type="text" class="input form-control"
 								placeholder="Contraseña" required>
 						</div>
 						<div class="form-group col-md-6 ">
-							<input id="servicio" type="text" class="form-control"
+							<input id="servicio" type="text" class="input form-control"
 								placeholder="Servicio" required>
 						</div>
 						<div class="form-group col-md-6">
@@ -122,6 +122,7 @@
 			      success: function(response) {
 			       console.log(response);
 			       TablaAccesos();
+			       $(".input").val("");
 			     },
 			        error: function(){      
 			            console.log('Error al insertar');
