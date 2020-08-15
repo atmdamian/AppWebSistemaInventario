@@ -21,7 +21,6 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Responsive Calendar For Bootstrap 4 Example</h1>
 	<div id="calendar"></div>
 </div>
 </body>
