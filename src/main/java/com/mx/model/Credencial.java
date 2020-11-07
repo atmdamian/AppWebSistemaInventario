@@ -1,7 +1,7 @@
 package com.mx.model;
 
 public class Credencial {
-
+	private Integer id_credencial;
 	private String tipo;
 	private String usuario;
 	private String contrasenia;
@@ -11,20 +11,14 @@ public class Credencial {
 	private String mascara_red;
 	private String servicios;
 			
-	public Credencial() {
-		super();
+	
+	
+	
+	public Integer getId_credencial() {
+		return id_credencial;
 	}
-	public Credencial(String tipo, String usuario, String contrasenia, String hostname, String gateway,
-			String direccion_ip, String mascara_red, String servicios) {
-		super();
-		this.tipo = tipo;
-		this.usuario = usuario;
-		this.contrasenia = contrasenia;
-		this.hostname = hostname;
-		this.gateway = gateway;
-		this.direccion_ip = direccion_ip;
-		this.mascara_red = mascara_red;
-		this.servicios = servicios;
+	public void setId_credencial(Integer id_credencial) {
+		this.id_credencial = id_credencial;
 	}
 	public String getTipo() {
 		return tipo;

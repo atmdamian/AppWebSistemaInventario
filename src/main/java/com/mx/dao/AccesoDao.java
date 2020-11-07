@@ -8,5 +8,6 @@ public interface AccesoDao {
 
 	public boolean save(Credencial credencial);
 	public List<Credencial> findAll();
+	public boolean delete(Credencial credencial);
 
 }

@@ -65,6 +65,7 @@
 	<table id="tableAccesos" class="table table-bordered table-striped">
                             <thead clas="thead-light">
                                 <tr>
+                                <th scope="coll">Id</th>
                                     <th scope="coll">Tipo</th>
                                     <th scope="col">HostName</th>
                                     <th scope="col">DireccionIP</th>
@@ -87,29 +88,30 @@
      });
 	var tipo;
 	var hostname;
-	var ip;
+	var direccion_ip;
 	var gateway;
-	var mascara;
+	var mascara_red;
 	var usuario;
 	var contrasenia;
-	
+	var servicios;
 	function registroAcceso(){
 		var datos = {
-				"tipo": document.getElementById("tipo").value,
-				"hostname": document.getElementById("hostname").value,
-				"ip": document.getElementById("ip").value,
-				"gateway": document.getElementById("gateway").value,
-				"mascara": document.getElementById("mascara").value,
-				"usuario": document.getElementById("usuario").value,
-				"contrasenia": document.getElementById("contrasenia").value,
-				"servicio": document.getElementById("servicio").value		
-			   }
+				tipo: document.getElementById("tipo").value,
+				hostname: document.getElementById("hostname").value,
+				direccion_ip: document.getElementById("ip").value,
+				gateway: document.getElementById("gateway").value,
+				mascara_red: document.getElementById("mascara").value,
+				usuario: document.getElementById("usuario").value,
+				contrasenia: document.getElementById("contrasenia").value,
+				servicios: document.getElementById("servicio").value		
+			   };
 			   $.ajax({
 			      type: "POST",
-			      //contentType : 'application/json; charset=utf-8',
+			      contentType: "application/json",
 			      //dataType : 'json',
-			      url: "registrarAcceso.html",
-			      data: {
+			      url: "api/postRegistrarAcceso.html",
+			      data : JSON.stringify(datos),
+			      /*data: {
 						tipo: document.getElementById("tipo").value,
 						hostname: document.getElementById("hostname").value,
 						ip: document.getElementById("ip").value,
@@ -118,9 +120,8 @@
 						usuario: document.getElementById("usuario").value,
 						contrasenia: document.getElementById("contrasenia").value,
 						servicio: document.getElementById("servicio").value						
-					}, // Note it is important
+					},*/ // Note it is important
 			      success: function(response) {
-			       console.log(response);
 			       TablaAccesos();
 			       $(".input").val("");
 			     },
@@ -164,6 +165,7 @@
                 	for (var i = 0; i < dataJSON.length; i++) {
                 		tablaAcceso +=
                                 '<tr>' +
+                                '<td>' + dataJSON[i].id_credencial + '</td>' +
                                 '<td>' + dataJSON[i].tipo + '</td>' +
                                 '<td>' + dataJSON[i].hostname + '</td>' +
                                 '<td>' + dataJSON[i].direccion_ip + '</td>' +
@@ -172,8 +174,9 @@
                                 '<td>' + dataJSON[i].usuario + '</td>' +
                                 '<td>' + dataJSON[i].contrasenia + '</td>' +
                                 '<td>' + dataJSON[i]. servicios + '</td>' +                 
-                                '<td>' + '<a class="btn btn-primary" onclick="modificarUsuario(this)" data-value="' + 1 + '"> Modificar </a>' + '</td>' +
-                                '<td>' + '<a href="#" title="Eliminar"> Eliminar </a>' + '</td>' +
+                                '<td>' + '<a class="btn btn-primary" onclick="modificarAcceso(this)" data-value="' + dataJSON[i].id_credencial + '"> Modificar </a>' + '</td>' +
+                                '<td>' + '<a class="btn btn-danger" onclick="eliminarAcceso(this)" data-value="' + dataJSON[i].id_credencial + '"> Eliminar </a>' + '</td>' +
+
                                 '</tr>';
                         $("#tableAccesos tbody").html(tablaAcceso);
                     }
@@ -181,6 +184,16 @@
             }
         });
     }
+
+
+
+    function modificarAcceso(id){
+    	console.log("modificar", id);
+    	}
+	function eliminarAcceso(id){
+	console.log("eliminar", id);
+	}
+
 	
 </script>
 </body>

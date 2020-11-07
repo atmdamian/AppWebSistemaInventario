@@ -23,4 +23,8 @@ public class AccesoService {
 	public List<Credencial> findAll(){	
 		return accesoDao.findAll();
 	}
+	
+	public boolean delete(Credencial credencial) {
+		return accesoDao.delete(credencial);
+	}
 }

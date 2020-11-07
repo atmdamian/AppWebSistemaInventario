@@ -37,13 +37,13 @@ public class AccesoDaoImpl implements AccesoDao{
 	
 	
 	public List<Credencial> findAll() {
-		return jdbcTemplate.query("select * from credencial_acceso",
+		return jdbcTemplate.query("SELECT * FROM credencial_acceso",
 				new RowMapper<Credencial>() {
 
 					public Credencial mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
 						Credencial credencial = new Credencial();
-						
+						credencial.setId_credencial(rs.getInt("id_credencial"));
 						credencial.setTipo(rs.getString("tipo"));
 						credencial.setContrasenia(rs.getString("contrasenia"));
 						credencial.setUsuario(rs.getString("usuario"));
@@ -57,6 +57,13 @@ public class AccesoDaoImpl implements AccesoDao{
 						return credencial;
 					}
 				});
+	}
+
+	public boolean delete(Credencial credencial) {
+		 String sql = "DELETE FROM credencial_acceso WHERE id_credencial = ?";
+		 return jdbcTemplate
+					.update(sql,
+							new Object[] {credencial.getId_credencial()}) == 1;
 	}
 	
 
